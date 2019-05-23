@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.ssm.dao.DeptDao">
+  <resultMap id="BaseResultMap" type="com.ss.ssm.entity.Dept">
+    <id column="deid" jdbcType="INTEGER" property="deid" />
+    <result column="dename" jdbcType="VARCHAR" property="dename" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    deid, dename
+  </sql>
+  
+  <!-- findByPageSel(): 条件查询部门记录 -->
+	<select id="findByPageSel" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from dept
+		where 1=1
+		<if test=" deid != null and  deid!='' ">
+			and  deid = #{ deid}
+		</if>
+		<if test="dename != null and dename!='' ">
+			and dename = #{dename}
+		</if>
+		order by  deid desc
+	</select>
+	
+  <select id="selectByExample" parameterType="com.ss.ssm.entity.Dept" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where deid = #{deid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dept
+    where deid = #{deid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ss.ssm.entity.Dept">
+    insert into dept (deid, dename)
+    values (#{deid,jdbcType=INTEGER}, #{dename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ss.ssm.entity.Dept">
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deid != null">
+        deid,
+      </if>
+      <if test="dename != null">
+        dename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deid != null">
+        #{deid,jdbcType=INTEGER},
+      </if>
+      <if test="dename != null">
+        #{dename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- Excel 导入 -->
+	<insert id="insertDeptList" parameterType="java.util.List">
+	    insert into dept(deid, dename) values
+	    <foreach collection="list" item="item" index="index" separator=",">
+	      (#{item.deid}, #{item.dename})
+	    </foreach>
+	</insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.ss.ssm.entity.Dept">
+    update dept
+    <set>
+      <if test="dename != null">
+        dename = #{dename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where deid = #{deid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ss.ssm.entity.Dept">
+    update dept
+    set dename = #{dename,jdbcType=VARCHAR}
+    where deid = #{deid,jdbcType=INTEGER}
+  </update>
+</mapper>
