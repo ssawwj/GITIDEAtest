@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +32,15 @@ import com.ss.ssm.entity.Msg;
 import com.ss.ssm.service.DeptService;
 import com.ss.ssm.utils.ExcelUtil;
 
+
 /**
 	@author ss
 	@date 2019年5月13日 上午10:49:51
 **/
 @Controller
 public class DeptController {
+	
+	private static final Logger log = LogManager.getLogger( DeptController.class);
 	@Autowired
 	private DeptService deptService;
 	
@@ -133,6 +140,11 @@ public class DeptController {
 		return null;
 	}
 	
+	/**
+	 * 创建excel
+	 * @param projects
+	 * @return
+	 */
 	private List<Map<String, Object>> createExcelRecord(List<Dept> projects) {
 		List<Map<String, Object>> listmap = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -148,4 +160,44 @@ public class DeptController {
 		}
 		return listmap;
 	}
+	
+	
+	@RequestMapping("/toUpload")
+	public String toUpload(){
+		return "upDown/upload";
+	}
+	
+	
+	/**
+	       * 多个文件上载
+	       * @param request
+	       * @return
+	       */
+	      @RequestMapping(value="/upload3",produces="text/html;charset=utf-8")
+	      @ResponseBody
+	      private String upload3(@RequestParam("file")CommonsMultipartFile[] partFiles,HttpServletRequest request) {
+	          InputStream inputStream = null;    
+	         try {
+	        	 //上传后的地址，注意("/upload")是表示文件上传后的目标文件夹
+	             String path = request.getServletContext().getRealPath("/upload");
+	             String name = request.getParameter("name"); 
+	             log.info("其他的参数{}",name);
+	             log.info("upload2---------------start---------------------");
+	             log.info("这个临时文件的路径是[{}]", path);
+	             for (int i = 0; i < partFiles.length; i++) {
+	                 String filename = partFiles[i].getOriginalFilename();
+	                 log.info("文件的名字：{}",filename);
+	                 File file = new File(path+"/"+filename);
+	                 inputStream = partFiles[i].getInputStream();
+	                 FileUtils.copyInputStreamToFile(inputStream, file);
+	             }
+	             if(inputStream!=null){
+	                 inputStream.close();
+	             }
+	             return "文件上传成功！";
+	         } catch (Exception e) {
+	             e.printStackTrace();
+	             return "文件上传失败！";
+	         } 
+	     }
 }
