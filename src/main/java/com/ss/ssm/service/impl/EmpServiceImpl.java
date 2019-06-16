@@ -38,4 +38,24 @@ public class EmpServiceImpl implements EmpService{
 		// TODO Auto-generated method stub
 		empDao.insertSelective(emp);
 	}
+	
+	/**
+	 * 按照员工id查询员工
+	 * @param id
+	 * @return
+	 */
+	public Emp getEmp(Integer id) {
+		// TODO Auto-generated method stub
+		Emp emp = empDao.selectByPrimaryKey(id);
+		return emp;
+	}
+	
+	/**
+	 * 员工更新
+	 * @param employee
+	 */
+	public void updateEmp(Emp emp) {
+		// TODO Auto-generated method stub
+		empDao.updateByPrimaryKeySelective(emp);
+	}
 }

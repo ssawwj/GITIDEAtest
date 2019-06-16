@@ -14,4 +14,8 @@ public interface EmpService{
 	public List<Emp> getAll();
 	
 	public void saveEmp(Emp emp);
+
+	public Emp getEmp(Integer id);
+
+	public void updateEmp(Emp emp);
 }

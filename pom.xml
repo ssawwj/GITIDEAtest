@@ -152,6 +152,13 @@
 	        <scope>runtime</scope>
 	    </dependency>
 	    
+	    <!-- 字符编解码包 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		
 	    <!--poi  -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
@@ -191,10 +198,53 @@
 		　　<groupId>org.dom4j</groupId>
 		　　<artifactId>dom4j</artifactId>
 		　　<version>2.1.0</version>
-		</dependency> 
+		</dependency>
 		
-   </dependencies> 
+	<!--activemq -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>4.3.7.RELEASE</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>5.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			<version>5.12.2</version>
+		</dependency>
+	
+		<!-- xbean 如<amq:connectionFactory /> 此次配置主要是因为配置文件中可能读取不到amq标签 -->
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>4.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-client</artifactId>
+			<version>5.12.0</version>
+		</dependency>
+     </dependencies> 
    <build>
 		<finalName>ssm-excel</finalName>
+		<!-- 编译插件 -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>  
 </project>

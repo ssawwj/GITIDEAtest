@@ -1,2 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<result><code>1</code><data><person><name>张三</name><id>1</id><url>http://192.168.191.1:9999/TestWeb/c7fe21616d2a5e2bd1e84bd453a5b30f.jpg</url><courses><course><courseName>语文</courseName><courseMarks>90</courseMarks><courseId>1</courseId></course><course><courseName>数学</courseName><courseMarks>80</courseMarks><courseId>2</courseId></course><course><courseName>英语</courseName><courseMarks>70</courseMarks><courseId>3</courseId></course></courses></person><person name="李四" id="2" url="http://192.168.191.1:9999/TestWeb/4052858c526002a712ef574ccae1948f.jpg"><course courseName="语文" courseMarks="91" courseId="1"/><course courseName="数学" courseMarks="82" courseId="1"/><course courseName="英语" courseMarks="73" courseId="1"/></person></data></result>
+<result>
+	<code>1</code>
+	<data>
+		<person>
+			<name>张三</name>
+			<id>1</id>
+			<url>http://192.168.191.1:9999/TestWeb/c7fe21616d2a5e2bd1e84bd453a5b30f.jpg
+			</url>
+			<courses>
+				<course>
+					<courseName>语文</courseName>
+					<courseMarks>90</courseMarks>
+					<courseId>1</courseId>
+				</course>
+				<course>
+					<courseName>数学</courseName>
+					<courseMarks>80</courseMarks>
+					<courseId>2</courseId>
+				</course>
+				<course>
+					<courseName>英语</courseName>
+					<courseMarks>70</courseMarks>
+					<courseId>3</courseId>
+				</course>
+			</courses>
+		</person>
+		<person name="李四" id="2"
+			url="http://192.168.191.1:9999/TestWeb/4052858c526002a712ef574ccae1948f.jpg">
+			<course courseName="语文" courseMarks="91" courseId="1" />
+			<course courseName="数学" courseMarks="82" courseId="1" />
+			<course courseName="英语" courseMarks="73" courseId="1" />
+		</person>
+	</data>
+</result>

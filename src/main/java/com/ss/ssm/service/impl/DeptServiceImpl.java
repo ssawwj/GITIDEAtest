@@ -44,9 +44,10 @@ public class DeptServiceImpl implements DeptService{
 	                Dept dept =new Dept();
 	                dept.setDeid(Integer.parseInt(ob.get(0).toString()));
 	              	dept.setDename(String.valueOf(ob.get(1)));
+	              	deptdao.updateByPrimaryKeySelective(dept);
 	              	deptList.add(dept);
 	            }
-	            deptdao.insertDeptList(deptList);
+//	            deptdao.insertDeptList(deptList);
 	        }catch (Exception e){
 	            e.printStackTrace();
 	        }
