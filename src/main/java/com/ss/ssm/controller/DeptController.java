@@ -200,4 +200,9 @@ public class DeptController {
 	             return "文件上传失败！";
 	         } 
 	     }
+	      
+	      public static void main(String[] args) {
+			String s="000000085385213637103178";
+			System.out.println(String.valueOf(Long.parseLong(s)));
+		}
 }
