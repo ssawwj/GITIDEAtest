@@ -5,7 +5,7 @@
 源码中的log4j2.xml 这样不起作用 需要修改编译之后(idea中target/classes)的那个文件目录下的log4j2.xml
 
 -->
-<Configuration status="WARN" monitorInterval="30">
+<Configuration status="INFO" monitorInterval="30">
     <Properties>
         <!-- 配置日志文件输出目录 ${sys:user.home} -->
         <!--共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.

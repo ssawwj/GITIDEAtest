@@ -13,15 +13,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ss.ssm.dao.DeptDao;
 import com.ss.ssm.dao.EmpDao;
-import com.ss.ssm.entity.Dept;
 import com.ss.ssm.entity.Emp;
+
 
 /**
 	@author ss
 	@date 2019年4月30日 上午10:22:28
 **/
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {"classpath:applicationContext.xml","classpath:mybatis-config.xml","classpath:springMvc-config.xml"})
+@ContextConfiguration(locations= {"classpath:spring/applicationContext.xml","classpath:spring/mybatis-config.xml","classpath:spring/springMvc-config.xml"})
 public class MapperTest {
 	
 	@Autowired
